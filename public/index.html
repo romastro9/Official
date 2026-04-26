@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MasterPost AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <h1>🤖 <span id="appName">MasterPost AI</span></h1>
+      <div class="actions">
+        <button id="langToggle">ខ្មែរ</button>
+        <button id="themeToggle">🌙</button>
+        <button id="logoutBtn" class="danger hidden">Logout</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="loginView" class="card">
+        <h2>Admin Login</h2>
+        <input id="username" placeholder="Username" value="admin" />
+        <input id="password" placeholder="Password" type="password" value="admin123" />
+        <button id="loginBtn">Login</button>
+      </section>
+
+      <section id="dashboardView" class="hidden">
+        <div class="grid cards">
+          <button class="feature" data-view="powerEditor">🎬 Power Editor</button>
+          <button class="feature" data-view="photoCarousel">🖼️ Photo Carousel</button>
+          <button class="feature" data-view="pages">📄 Choose Pages</button>
+          <button class="feature" data-view="history">📜 Post History</button>
+          <button class="feature" data-view="settings">⚙️ Settings</button>
+        </div>
+
+        <section id="pages" class="card hidden panel">
+          <h3>Facebook Connection</h3>
+          <input id="fbToken" placeholder="Paste Facebook User/Page token" />
+          <div class="row"><button id="verifyTokenBtn">Verify Token</button><button id="fetchPagesBtn">Fetch Pages</button></div>
+          <div id="pagesList"></div>
+        </section>
+
+        <section id="powerEditor" class="card hidden panel">
+          <h3>Power Editor - Video</h3>
+          <div id="videoPages"></div>
+          <textarea id="videoCaption" placeholder="Write caption"></textarea>
+          <input id="videoUrl" placeholder="OR paste video URL" />
+          <input type="file" id="videoFile" accept="video/*" />
+          <video id="videoPreview" controls class="hidden"></video>
+          <button id="postVideoBtn">Publish Video</button>
+        </section>
+
+        <section id="photoCarousel" class="card hidden panel">
+          <h3>Photo Carousel</h3>
+          <div id="photoPages"></div>
+          <textarea id="photoCaption" placeholder="Write caption"></textarea>
+          <input type="file" id="photoFiles" accept="image/*" multiple />
+          <div id="photoPreview" class="grid preview"></div>
+          <button id="postPhotosBtn">Publish Photos</button>
+        </section>
+
+        <section id="history" class="card hidden panel">
+          <h3>Post History</h3>
+          <div class="row">
+            <select id="filterStatus"><option value="">All Status</option><option>success</option><option>failed</option></select>
+            <select id="filterType"><option value="">All Types</option><option>video</option><option>photo</option></select>
+            <button id="loadHistoryBtn">Filter</button>
+          </div>
+          <div id="historyList"></div>
+        </section>
+
+        <section id="settings" class="card hidden panel">
+          <h3>Settings</h3>
+          <input id="settingAppName" placeholder="App name" />
+          <textarea id="settingFooter" placeholder="Default caption footer"></textarea>
+          <input id="settingMaxUpload" type="number" placeholder="Max upload size MB" />
+          <input id="settingTypes" placeholder="Allowed file types comma separated" />
+          <select id="settingTheme"><option value="light">light</option><option value="dark">dark</option></select>
+          <select id="settingLang"><option value="en">English</option><option value="km">Khmer</option></select>
+          <button id="saveSettingsBtn">Save Settings</button>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="loading" class="loading hidden">Posting...</div>
+  <div id="toast"></div>
+  <script src="/js/app.js"></script>
+</body>
+</html>
